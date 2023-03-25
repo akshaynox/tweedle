@@ -1,18 +1,15 @@
 import React, { useCallback } from "react";
 import { useRouter } from "next/router";
 import useLoginModal from "@/hooks/useLoginModal";
-import useRegisterModal from "@/hooks/useRegisterModal";
 import { FaFeather } from "react-icons/fa";
 
 const SidebarTweetButton: React.FC = () => {
   const router = useRouter();
   const loginModal = useLoginModal();
-  const registerModal = useRegisterModal();
 
   const onClick = useCallback(() => {
-    registerModal.onOpen();
-    // loginModal.onOpen();
-  }, [registerModal, loginModal]);
+    loginModal.onOpen();
+  }, [loginModal]);
 
   return (
     <div onClick={onClick}>
