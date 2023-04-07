@@ -12,7 +12,7 @@ export default async function handler(
 
   try {
     const { currentUser } = await serverAuth(req, res);
-    const { name, username, bio, profileImage, coverImage } = currentUser;
+    const { name, username, bio, profileImage, coverImage } = req.body;
     if (!name || !username) {
       throw new Error("Missing fields");
     }
