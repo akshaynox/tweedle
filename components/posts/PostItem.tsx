@@ -5,7 +5,7 @@ import { formatDistanceToNowStrict } from "date-fns";
 
 import useLoginModal from "@/hooks/useLoginModal";
 import useCurrentUser from "@/hooks/useCurrentUser";
-// import useLike from "@/hooks/useLike";
+import useLike from "@/hooks/useLike";
 
 import Avatar from "../Avatar";
 interface PostItemProps {
@@ -18,7 +18,7 @@ const PostItem: React.FC<PostItemProps> = ({ data = {}, userId }) => {
   const loginModal = useLoginModal();
 
   const { data: currentUser } = useCurrentUser();
-  const hasLiked = true; //temp value
+  const { hasLiked, toggleLike } = useLike({ postId: data.id, userId });
 
   const goToUser = useCallback(
     (ev: any) => {
@@ -40,9 +40,9 @@ const PostItem: React.FC<PostItemProps> = ({ data = {}, userId }) => {
         return loginModal.onOpen();
       }
 
-      //   toggleLike();
+      toggleLike();
     },
-    [loginModal, currentUser]
+    [loginModal, currentUser, toggleLike]
   );
 
   const LikeIcon = hasLiked ? AiFillHeart : AiOutlineHeart;
